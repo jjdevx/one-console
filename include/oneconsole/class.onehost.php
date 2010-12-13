@@ -24,10 +24,10 @@ class OneHost {
 		//Setting options for a secure SSL based xmlrpc server
 		curl_setopt($req, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($req, CURLOPT_SSL_VERIFYHOST, 2);
-		curl_setopt( $req, CURLOPT_CUSTOMREQUEST, "POST" );
+		curl_setopt($req, CURLOPT_CUSTOMREQUEST, "POST" );
 		curl_setopt($req, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt($req, CURLOPT_HTTPHEADER, $headers );
-		curl_setopt( $req, CURLOPT_POSTFIELDS, $request );
+		curl_setopt($req, CURLOPT_POSTFIELDS, $request );
 
 		//Finally run
 		$response = curl_exec($req);
@@ -41,6 +41,8 @@ class OneHost {
 		return $result;
 		
 	}
+	
+	
 		
 }
 
