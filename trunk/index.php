@@ -1,20 +1,12 @@
-<?php include_once 'config.php'; ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>OpenNebula Web Management Console</title>
-</head>
-<frameset>
-    <frame>
-    <frame>
-    <noframes>
-    <body>
-    <p>This page uses frames. The current browser you are using does not support frames.</p>
-    <?php
+<?php
 
-	?>
-    </body>
-    </noframes>
-</frameset>
-</html>
+require 'config.php';
+
+
+
+$users = new Users();
+
+var_dump($users->);
+
+
+?>

@@ -1,3 +1,9 @@
-class template extends ADOdb_Active_Record {
+<?php 
 
+class Template extends ADOdb_Active_Record {
+	
+	var $_table = "template";
+	
 }
+
+?>

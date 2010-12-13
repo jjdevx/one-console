@@ -1,3 +1,7 @@
-class user extends ADOdb_Active_Record {
+<?php 
 
+class Users extends ADOdb_Active_Record{
+	var $_table = "user";
 }
+
+?>
