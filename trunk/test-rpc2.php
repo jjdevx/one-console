@@ -30,4 +30,12 @@ curl_close($req);
 //Decoding the response to be displayed
 $arr=xmlrpc_decode($response);
 
+$string=$arr[1];
+
+$xml = simplexml_load_string($string);
+
+//print_r($xml);
+
+echo count($xml->USER);
+
 ?>
