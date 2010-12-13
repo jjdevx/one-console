@@ -15,4 +15,9 @@ require 'include/oneconsole/class.user_privileges.php';
 require 'include/oneconsole/class.template.php';
 require 'include/oneconsole/class.privileges.php';
 
+require 'language/en.php';
+
+session_start();
+
+
 ?>
