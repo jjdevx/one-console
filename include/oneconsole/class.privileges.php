@@ -1,3 +1,9 @@
-class privilges extends ADOdb_Active_Record {
+<?php 
 
+class Privilges extends ADOdb_Active_Record {
+	
+	var $_table = "privilges";
+	
 }
+
+?>
