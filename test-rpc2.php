@@ -34,8 +34,8 @@ $string=$arr[1];
 
 $xml = simplexml_load_string($string);
 
-//print_r($xml);
-
-echo count($xml->USER);
+if (!$xml) {
+	echo "error";
+}
 
 ?>
