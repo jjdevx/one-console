@@ -10,11 +10,13 @@
 <body>
 <?php 
 
+/*
 if (!isset($_SESSION['onesession'])) {
 	include 'module/authen/login.php';
 } else {
 	echo "loged in";
 }
+*/
 
 ?> 
 </body>
