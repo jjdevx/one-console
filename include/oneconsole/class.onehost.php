@@ -9,7 +9,7 @@ class OneHost {
 	function Pool() {
 		
 		//Using the XML-RPC extension to format the XML package
-		$request = xmlrpc_encode_request("one.userpool.info", array($this->session)));
+		$request = xmlrpc_encode_request("one.userpool.info", array($this->session));
 		$req = curl_init($this->$service_url);
 
 		//Using the cURL extension to send it off,  first creating a custom header block
