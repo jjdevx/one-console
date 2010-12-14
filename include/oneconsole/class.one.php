@@ -52,7 +52,7 @@ class One {
 	 */
 	function VmAllocate($temlate) {
 		$result=$this->rpc_send("one.vm.allocate", array($this->session,$temlate));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
@@ -71,11 +71,11 @@ class One {
 	 */
 	function VmDeploy($vid,$hid){
 		$result=$this->rpc_send("one.vm.deploy", array($this->session,$vid,$hid));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
-				$result=false;
+				$result=FALSE;
 			} else {
-				$result=true;
+				$result=TRUE;
 			}		
 		}
 		return $result;		
@@ -90,13 +90,14 @@ class One {
 	 */
 	function VmAction($action,$vid) {
 		$result=$this->rpc_send("one.vm.action", array($this->session,$action,$vid));
-		if ($result[0]=true) {
+				
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
 				$result=true;
 			}		
-		}
+		}		
 		return $result;		
 	}
 	
@@ -108,7 +109,7 @@ class One {
 	 */
 	function vmMigrate($vid,$hid){
 		$result=$this->rpc_send("one.vm.migrate", array($this->session,$vid,$hid));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
@@ -126,7 +127,7 @@ class One {
 	 */
 	function VmSaveDisk($vid,$did,$iid){
 		$result=$this->rpc_send("one.vm.savedisk", array($this->session,$vid,$did,$iid));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
@@ -180,12 +181,14 @@ class One {
 	 */
 	function HostAllocate($hostname,$im="im_kvm",$vmm="vmm_kvm",$tm="tm_nfs",$flag=true) {
 		$result=$this->rpc_send("one.host.allocate", array($this->session,$hostname,$im,$vmm,$tm,$flag));
-		if ($result[0]=true) {
-			if ((count($result)>1) AND ($result[1]>=0)) {
+			if ($result[0]==true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
 				$result=false;
-			}
+			}		
+		} else {
+			$result=false;
 		}
 		return $result;		
 	}
@@ -257,7 +260,7 @@ class One {
 	 */
 	function VNetAllocate($template){
 		$result=$this->rpc_send("one.vn.allocate", array($this->session,$template));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
@@ -272,8 +275,10 @@ class One {
 	 * @param $vid
 	 */
 	function VNetInfo($vid){
-		$result=$this->rpc_send("one.vm.info", array($this->session,$vid));
+		$result=$this->rpc_send("one.vn.info", array($this->session,$vid));
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);			
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;
@@ -285,7 +290,7 @@ class One {
 	 */
 	function VNetDelete($vid){
 		$result=$this->rpc_send("one.vn.delete", array($this->session,$vid));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
@@ -302,7 +307,7 @@ class One {
 	 */
 	function VNetPublish($vid,$enable=true){
 		$result=$this->rpc_send("one.vn.publish", array($this->session,$vid,$enable));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
@@ -314,10 +319,13 @@ class One {
 
 	/**
 	 * retrieves all or part of the Virtual Networks in the pool 
+	 * Filter flag < = -2: All VNs, -1: Connected user's VNs and Public ones, > = 0: UID User's VNs
 	 */
-	function VNetPool(){
-		$result=$this->rpc_send("one.vnpool.info", array($this->session));		
+	function VNetPool($flag=-2){
+		$result=$this->rpc_send("one.vnpool.info", array($this->session,$flag));	
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);			
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;
@@ -331,7 +339,7 @@ class One {
 	 */	
 	function UserAllocate($username,$passwd) {
 		$result=$this->rpc_send("one.user.allocate", array($this->session,$username,sha1($passwd)));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>0)) {
 				$result=true;
 			} else {
@@ -349,7 +357,7 @@ class One {
 	 */	
 	function UserPasswd($uid,$passwd) {
 		$result=$this->rpc_send("one.user.passwd", array($this->session,$uid,sha1($passwd)));	
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
@@ -365,7 +373,7 @@ class One {
 	 */
 	function UserDelete($uid) {
 		$result=$this->rpc_send("one.user.delete", array($this->session,$uid));		
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
 			} else {
@@ -413,7 +421,7 @@ class One {
 	 */
 	function ImageAllocate($template){
 		$result=$this->rpc_send("one.image.allocate", array($this->session,$template));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
@@ -430,6 +438,8 @@ class One {
 	function ImageInfo($iid) {
 		$result=$this->rpc_send("one.image.info", array($this->session,$iid));
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;		
@@ -441,12 +451,14 @@ class One {
 	 */
 	function ImageDelete($iid){
 		$result=$this->rpc_send("one.image.delete", array($this->session,$iid));
-		if ($result[0]=true) {
-			if (count($result) > 1) {
-				$result=false;
-			} else {
+		if ($result[0]==true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
+			} else {
+				$result=false;
 			}		
+		} else {
+			$result=false;
 		}
 		return $result;
 	}
@@ -460,12 +472,14 @@ class One {
 	 */
 	function ImageUpdateArrtibute($iid,$attr,$value){
 		$result=$this->rpc_send("one.image.update", array($this->session,$iid,$attr,$value));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
 				$result=false;
-			}
+			}		
+		} else {
+			$result=false;
 		}
 		return $result;
 	}
@@ -477,12 +491,14 @@ class One {
 	 */
 	function ImageRemoveArrtibute($iid,$attr){
 		$result=$this->rpc_send("one.image.rmattr", array($this->session,$iid,$attr));
-		if ($result[0]=true) {
+			if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
 				$result=false;
-			}
+			}		
+		} else {
+			$result=false;
 		}
 		return $result;
 	}
@@ -494,12 +510,14 @@ class One {
 	 */
 	function ImageEnable($iid,$enable=true){
 		$result=$this->rpc_send("one.image.enable", array($this->session,$iid,$attr));
-		if ($result[0]=true) {
+			if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
 				$result=false;
-			}
+			}		
+		} else {
+			$result=false;
 		}
 		return $result;
 	}
@@ -511,12 +529,14 @@ class One {
 	 */
 	function ImagePublish($iid,$enable=true){
 		$result=$this->rpc_send("one.image.publish", array($this->session,$iid,$attr));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
 				$result=false;
-			}
+			}		
+		} else {
+			$result=false;
 		}
 		return $result;
 	}
@@ -527,9 +547,11 @@ class One {
 	 * > = 0: UID User's Images
 	 * @param $flag
 	 */
-	function ImagePool($flag){
+	function ImagePool($flag=-2){
 		$result=$this->rpc_send("one.imagepool.info", array($this->session,$flag));		
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);			
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;
@@ -542,7 +564,7 @@ class One {
 	 */
 	function ClusterAllocation($name){
 		$result=$this->rpc_send("one.cluster.allocate", array($this->session,$name));
-		if ($result[0]=true) {
+		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>=0)) {
 				$result=true;
 			} else {
