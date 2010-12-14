@@ -166,6 +166,82 @@ class One {
 		return $xml;		
 	}
 	
+	/**
+	 * adds a host to the host list
+	 * @param $hostname
+	 * @param $im
+	 * @param $vmm
+	 * @param $tm
+	 * @param $flag
+	 */
+	function HostAllocate($hostname,$im="im_kvm",$vmm="vmm_kvm",$tm="tm_nfs",$flag=true) {
+		$result=$this->rpc_send("one.host.allocate", array($this->session,$hostname,$im,$vmm,$tm,$flag));
+		if ($result[0]=true) {
+			if ((count($result)>1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;		
+	}
+	
+	/**
+	 * retrieves the information of the given host
+	 * @param $hid
+	 */
+	function HostInfo($hid){
+		$result=$this->rpc_send("one.host.info", array($this->session,$hid));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;
+	}
+
+	/**
+	 * deletes a host from the host list
+	 * @param int $hid
+	 */
+	function HostDelete($hid){
+		$result=$this->rpc_send("one.host.delete", array($this->session,$hid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;
+	}
+	
+	/**
+	 * Enables or disables a given host
+	 * @param unknown_type $hid
+	 * @param unknown_type $enable
+	 */
+	function HostEnable($hid,$enable=true){
+		$result=$this->rpc_send("one.host.enable", array($this->session,$hid,$enable));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;
+	}
+	
+	/**
+	 * retrieves all the hosts the pool 
+	 */
+	function HostPool(){
+		$result=$this->rpc_send("one.hostpool.info", array($this->session));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}
+		return $xml;	
+	}
+	
 	/** 
 	 * add user to pool,
 	 * return 1 is success return null or 0 is fail. 
