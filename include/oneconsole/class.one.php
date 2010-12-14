@@ -608,9 +608,10 @@ class One {
 	 * 
 	 * Adds a host to a cluster.
 	 * @param int $hid
+	 * @param int $cid
 	 */
-	function ClusterHostAdd($hid){
-		$result=$this->rpc_send("one.cluster.add", array($this->session,$hid));
+	function ClusterHostAdd($hid,$cid){
+		$result=$this->rpc_send("one.cluster.add", array($this->session,$hid,$cid));
 		if ($result[0]=true) {
 			if (count($result) > 1) {
 				$result=false;
