@@ -242,6 +242,80 @@ class One {
 		return $xml;	
 	}
 	
+	/**
+	 * 
+	 * allocates a new virtual network
+	 * @param $template
+	 */
+	function VNetAllocate($template){
+		$result=$this->rpc_send("one.vn.allocate", array($this->session,$template));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * retrieves the information of the given virtual network
+	 * @param $vid
+	 */
+	function VNetInfo($vid){
+		$result=$this->rpc_send("one.vm.info", array($this->session,$vid));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;
+	}
+	
+	/**
+	 * deletes a virtual network from the virtual network pool
+	 * @param $vid
+	 */
+	function VNetDelete($vid){
+		$result=$this->rpc_send("one.vn.delete", array($this->session,$vid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * Publishes or unpublishes a virtual network.
+	 * @param $vid
+	 * @param $enable
+	 */
+	function VNetPublish($vid,$enable=true){
+		$result=$this->rpc_send("one.vn.publish", array($this->session,$vid,$enable));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * retrieves all or part of the Virtual Networks in the pool 
+	 */
+	function VNetPool(){
+		$result=$this->rpc_send("one.vnpool.info", array($this->session));		
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;
+	}
+	
+	
 	/** 
 	 * add user to pool,
 	 * return 1 is success return null or 0 is fail. 
@@ -292,7 +366,7 @@ class One {
 			}		
 		}
 		return $result;
-	}	
+	}
 	
 	/**
 	 * List all users in pool, return is SimpleXML object.
