@@ -315,7 +315,6 @@ class One {
 		return $xml;
 	}
 	
-	
 	/** 
 	 * add user to pool,
 	 * return 1 is success return null or 0 is fail. 
@@ -400,7 +399,198 @@ class One {
 		
 	}
 	
+	/**
+	 * allocates a new image
+	 * @param $template
+	 */
+	function ImageAllocate($template){
+		$result=$this->rpc_send("one.image.allocate", array($this->session,$template));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * retrieves the information of the given image
+	 * @param $iid
+	 */
+	function ImageInfo($iid) {
+		$result=$this->rpc_send("one.image.info", array($this->session,$iid));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;		
+	}
+	
+	/**
+	 * deletes an image from the image pool
+	 * @param $iid
+	 */
+	function ImageDelete($iid){
+		$result=$this->rpc_send("one.image.delete", array($this->session,$iid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;
+	}
+	
+	/**
+	 * 
+	 * Modifies an image attribute
+	 * @param $iid
+	 * @param $attr
+	 * @param $value
+	 */
+	function ImageUpdateArrtibute($iid,$attr,$value){
+		$result=$this->rpc_send("one.image.update", array($this->session,$iid,$attr,$value));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * Removes an image attribute
+	 * @param $iid
+	 * @param $attr
+	 */
+	function ImageRemoveArrtibute($iid,$attr){
+		$result=$this->rpc_send("one.image.rmattr", array($this->session,$iid,$attr));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * Enables or disables an image
+	 * @param unknown_type $iid
+	 * @param unknown_type $enable
+	 */
+	function ImageEnable($iid,$enable=true){
+		$result=$this->rpc_send("one.image.enable", array($this->session,$iid,$attr));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
 
+	/**
+	 * Publishes or unpublishes an image
+	 * @param unknown_type $iid
+	 * @param unknown_type $enable
+	 */
+	function ImagePublish($iid,$enable=true){
+		$result=$this->rpc_send("one.image.publish", array($this->session,$iid,$attr));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * Retrieves all or part of the images in the pool, 
+	 * Filter flag < = -2: All Images, -1: Images belonging to the connected user and Public ones,
+	 * > = 0: UID User's Images
+	 * @param $flag
+	 */
+	function ImagePool($flag){
+		$result=$this->rpc_send("one.imagepool.info", array($this->session,$flag));		
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;
+	}
+	
+	
+	function ClusterAllocation($name){
+		$result=$this->rpc_send("one.cluster.allocate", array($this->session,$name));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	function ClusterInfo($cid){
+		$result=$this->rpc_send("one.cluster.info", array($this->session,$cid));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;	
+	}
+	
+	function ClusterDelete($cid) {
+		$result=$this->rpc_send("one.cluster.delete", array($this->session,$cid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;		
+	}
+	
+	function ClusterHostAdd($hid){
+		$result=$this->rpc_send("one.cluster.add", array($this->session,$hid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;			
+	}
+	
+	function ClusterHostRemove($hid) {
+		$result=$this->rpc_send("one.cluster.remove", array($this->session,$hid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;	
+	}
+	
+	function ClusterPool(){
+		$result=$this->rpc_send("one.clusterpool.info", array($this->session,$flag));		
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;
+	}
 	
 }
 
