@@ -46,7 +46,112 @@ class One {
 
 	/**
 	 * 
-	 * add user to pool,  return 1 is success return null or 0 is fail. 
+	 * allocates a virtual machine description from the given template string,
+	 * return 1 is success return null or 0 is fail.
+	 * @param $temlate
+	 */
+	function VmAllocate($temlate) {
+		$result=$this->rpc_send("one.vm.allocate", array($this->session,$temlate));
+		if ($result[0]=true) {
+			if ((count($result) > 1) AND ($result[1]>=0)) {
+				$result=true;
+			} else {
+				$result=false;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * 
+	 * initiates the instance of the given vmid on the target host,
+	 * return 1 is success return null or 0 is fail.
+	 * @param $vid
+	 * @param $hid
+	 */
+	function VmDeploy($vid,$hid){
+		$result=$this->rpc_send("one.vm.deploy", array($this->session,$vid,$hid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;		
+	}
+	
+	/**
+	 * submits an action to be performed on a virtual machine. the action name to be performed, 
+	 * can be: “shutdown”, “hold”, “release”, “stop”, “cancel”, “suspend”, 
+	 * “resume”, “restart”, “finalize” 
+	 * @param string $action
+	 * @param int $vid
+	 */
+	function VmAction($action,$vid) {
+		$result=$this->rpc_send("one.vm.action", array($this->session,$action,$vid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;		
+	}
+	
+	
+	/**
+	 * migrates one virtual machine (vid) to the target host (hid).
+	 * @param $vid
+	 * @param $hid
+	 */
+	function vmMigrate($vid,$hid){
+		$result=$this->rpc_send("one.vm.migrate", array($this->session,$vid,$hid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;
+	}
+	
+	/**
+	 * Sets the disk to be saved in the given image.
+	 * @param $vid
+	 * @param $did
+	 * @param $iid
+	 */
+	function VmSaveDisk($vid,$did,$iid){
+		$result=$this->rpc_send("one.vm.savedisk", array($this->session,$vid,$did,$iid));
+		if ($result[0]=true) {
+			if (count($result) > 1) {
+				$result=false;
+			} else {
+				$result=true;
+			}		
+		}
+		return $result;
+	}
+	
+	/**
+	 * gets information on a virtual machine 
+	 * @param $vid
+	 */
+	function VmInfo($vid){
+		$result=$this->rpc_send("one.vm.info", array($this->session,$vid,$did,$iid));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;
+	}
+
+	
+	/** 
+	 * add user to pool,
+	 * return 1 is success return null or 0 is fail. 
 	 * @param $username
 	 * @param $passwd
 	 */	
@@ -63,13 +168,13 @@ class One {
 	}
 	
 	/**
-	 * Change password, return 1 is success return null is fail. 
+	 * Change password,
+	 * return 1 is success return null is fail. 
 	 * @param int $uid
 	 * @param string $password
 	 */	
 	function UserPasswd($uid,$passwd) {
 		$result=$this->rpc_send("one.user.passwd", array($this->session,$uid,sha1($passwd)));	
-
 		if ($result[0]=true) {
 			if (count($result) > 1) {
 				$result=false;
@@ -77,8 +182,7 @@ class One {
 				$result=true;
 			}		
 		}
-		return $result;
-		
+		return $result;		
 	}
 
 	/**

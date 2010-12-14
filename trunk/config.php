@@ -11,6 +11,11 @@ $dbpassword="monalisa";
 $language="en";
 $template="default";
 
+$oneadmin="oneadmin";
+$onepassword="oneadmin";
+
+$xmlrpc="http://172.16.20.183:2633/RPC2";
+
 $db = &ADONewConnection('mysql'); 
 $db->PConnect($dbhost,$dbusername,$dbpassword,$dbname);
 
@@ -22,6 +27,7 @@ require 'include/oneconsole/class.user.php';
 require 'include/oneconsole/class.user_privileges.php';
 require 'include/oneconsole/class.template.php';
 require 'include/oneconsole/class.privileges.php';
+require 'include/oneconsole/class.one.php';
 
 require "language/".$language.".php";
 
