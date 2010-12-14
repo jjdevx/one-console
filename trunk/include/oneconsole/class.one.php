@@ -143,6 +143,8 @@ class One {
 	function VmInfo($vid){
 		$result=$this->rpc_send("one.vm.info", array($this->session,$vid,$did,$iid));
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);			
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;
@@ -154,13 +156,15 @@ class One {
 	 * with previous versions. 
 	 * Filter flag < = -2: All VMs, -1: Connected user's VMs, > = 0: UID User's VMs
 	 * 
-	 * @param unknown_type $flag
-	 * @param unknown_type $info
-	 * @param unknown_type $state
+	 * @param int $flag
+	 * @param boolean $info
+	 * @param int $state
 	 */
-	function VmPool($flag,$info=true,$state="-1") {
-		$result=$this->rpc_send("one.vmpool.info", array($this->session,$vid,$did,$iid));
+	function VmPool($flag,$info=false,$state="-1") {
+		$result=$this->rpc_send("one.vmpool.info", array($this->session,$flag,$info,$state));
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);			
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;		
@@ -193,6 +197,8 @@ class One {
 	function HostInfo($hid){
 		$result=$this->rpc_send("one.host.info", array($this->session,$hid));
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);				
 			$xml=simplexml_load_string($result[1]);
 		}		
 		return $xml;
@@ -237,6 +243,8 @@ class One {
 	function HostPool(){
 		$result=$this->rpc_send("one.hostpool.info", array($this->session));
 		if (($result[0]==true)) {
+			$result[1]=str_replace("<![CDATA[", "",$result[1]);
+			$result[1]=str_replace("]]>", "",$result[1]);				
 			$xml=simplexml_load_string($result[1]);
 		}
 		return $xml;	
