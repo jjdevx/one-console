@@ -148,6 +148,23 @@ class One {
 		return $xml;
 	}
 
+	/**
+	 * Retrieves all or part of the VMs in the pool. 
+	 * This method can be called with only the first two parameters for compatibility 
+	 * with previous versions. 
+	 * Filter flag < = -2: All VMs, -1: Connected user's VMs, > = 0: UID User's VMs
+	 * 
+	 * @param unknown_type $flag
+	 * @param unknown_type $info
+	 * @param unknown_type $state
+	 */
+	function VmPool($flag,$info=true,$state="-1") {
+		$result=$this->rpc_send("one.vmpool.info", array($this->session,$vid,$did,$iid));
+		if (($result[0]==true)) {
+			$xml=simplexml_load_string($result[1]);
+		}		
+		return $xml;		
+	}
 	
 	/** 
 	 * add user to pool,
