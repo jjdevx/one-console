@@ -1,23 +1,26 @@
 <?php
 	require 'config.php';
+	include "template/".$template."/header.php";	
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>OpenNebula Web Management Console</title>
-</head>
-<body>
 <?php 
 
-/*
-if (!isset($_SESSION['onesession'])) {
-	include 'module/authen/login.php';
-} else {
-	echo "loged in";
-}
-*/
+$obone=new One();
+$obone->service_url=$xmlrpc;
+$obone->session=$oneadmin.":".sha1($onepassword);
+
+/** test class **/
+
+//$xml=$obone->UserPool();
+//$xml=$obone->UserAuthen("oneadmin", "oneadmin");
+//$xml=$obone->UserDelete(6);
+//$xml=$obone->UserAllocate("helen", "helen");
+//$xml=$obone->UserPasswd(7, "xxx");
+//$xml=$obone->UserAuthen("helen", "xxx");
+
+//var_dump($xml);
+
+
+
 
 ?> 
-</body>
-</html>
+<?php include "template/".$template."/footer.php"; ?>
