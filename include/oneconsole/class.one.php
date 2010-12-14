@@ -527,7 +527,11 @@ class One {
 		return $xml;
 	}
 	
-	
+	/**
+	 * 
+	 * Creates a new cluster in the pool
+	 * @param string $name
+	 */
 	function ClusterAllocation($name){
 		$result=$this->rpc_send("one.cluster.allocate", array($this->session,$name));
 		if ($result[0]=true) {
@@ -540,6 +544,11 @@ class One {
 		return $result;
 	}
 	
+	/**
+	 * 
+	 * Retrieves the information of the given cluster
+	 * @param $cid
+	 */
 	function ClusterInfo($cid){
 		$result=$this->rpc_send("one.cluster.info", array($this->session,$cid));
 		if (($result[0]==true)) {
@@ -548,6 +557,11 @@ class One {
 		return $xml;	
 	}
 	
+	/**
+	 * 
+	 * Deletes a cluster from the cluster pool
+	 * @param $cid
+	 */
 	function ClusterDelete($cid) {
 		$result=$this->rpc_send("one.cluster.delete", array($this->session,$cid));
 		if ($result[0]=true) {
@@ -560,6 +574,11 @@ class One {
 		return $result;		
 	}
 	
+	/**
+	 * 
+	 * Adds a host to a cluster.
+	 * @param int $hid
+	 */
 	function ClusterHostAdd($hid){
 		$result=$this->rpc_send("one.cluster.add", array($this->session,$hid));
 		if ($result[0]=true) {
@@ -572,6 +591,11 @@ class One {
 		return $result;			
 	}
 	
+	/**
+	 * 
+	 * Removes a host from its cluster.
+	 * @param unknown_type $hid
+	 */
 	function ClusterHostRemove($hid) {
 		$result=$this->rpc_send("one.cluster.remove", array($this->session,$hid));
 		if ($result[0]=true) {
@@ -584,6 +608,10 @@ class One {
 		return $result;	
 	}
 	
+	/**
+	 * 
+	 * Returns the cluster pool information.
+	 */
 	function ClusterPool(){
 		$result=$this->rpc_send("one.clusterpool.info", array($this->session,$flag));		
 		if (($result[0]==true)) {
