@@ -1,5 +1,8 @@
 ==Table of Contents==
   * [Introduction]
+    * [CloudComputing]
+    * [OpenNebula]
+    * [ManagementConsole]
   * [Requirement]
   * [Installation]
-  * [Referance]
+  * [Reference]
