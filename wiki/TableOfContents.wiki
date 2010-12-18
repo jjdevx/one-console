@@ -1,8 +1,8 @@
 ==Table of Contents==
   * [Introduction]
-    * [CloudComputing]
-    * [OpenNebula]
-    * [ManagementConsole]
+    * [CloudComputing Cloud Computing]
+    * [OpenNebula OpenNebula Project]
+    * [ManagementConsole Web Management Console]
   * [Requirement]
   * [Installation]
   * [Reference]
