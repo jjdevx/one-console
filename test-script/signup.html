@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+
+<script>
+
+$().ready(function() {
+	
+	// validate signup form on keyup and submit
+	$("#signup").validate({
+		rules: {
+			password: {
+				required: true,
+				minlength: 5
+			},
+			confirm_password: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			}
+		},
+		messages: {
+			password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long"
+			},
+			confirm_password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long",
+				equalTo: "Please enter the same password as above"
+			}
+		}
+	});
+		
+});
+	
+
+</script>
+
+</head>
+<body>
+
+<form id="signup" name="signup" method="post" name="signup.php">
+<!-- <label>Name</label>
+<input type="text" name="name">
+<label>Address 1</label>
+<input type="text" name="address1">
+<label>Address 2</label>
+<input type="text" name="address2" >
+<label>City</label>
+<input type="text" name="city">
+<label>State</label>
+<input type="text" name="state">
+<label>Conutry</label>
+<input type="text" name="country">
+<label>Zip Code</label>
+<input type="text" name="zip">
+<label>Phone</label>
+<input type="text" name="phone">
+<label>E-Mail</label>
+<input type="text" name="email">
+-->
+<p>
+	<label for="password">Password</label>
+	<input id="password" name="password" type="password" />
+</p>
+<p>
+	<label for="confirm_password">Confirm password</label>
+	<input id="confirm_password" name="confirm_password" type="password" />
+</p>
+
+
+
+<input type="submit" value="SignUp"><input type="reset" value="Reset">
+</form>
+
+</body>
+</html>
