@@ -5,9 +5,14 @@
 	$obone->service_url=$xmlrpc;
 	$obone->session=$oneadmin.":".sha1($onepassword);
 
+	$_SESSION['SID']="";
+	
+	// split query string
+	$ocreq=split("/",$_REQUEST['q']);
+
 	// check exist session
-	if (($_SESSION['SID']=="") AND ($_REQUEST['q']!="login") AND ($_REQUEST['q']!="signup")) {
-		header("Location: http://localhost/login");
+	if (($_SESSION['SID']=="") AND ($ocreq[0]!="signin") AND ($ocreq[0]!="signup")) {
+		header("Location: ".$url."/signin");
 	}
 	
 	include "template/".$template."/header.php";
@@ -48,14 +53,19 @@
 	//$xml=$obone->ClusterDelete(1);
 	//$xml=$obone->ClusterHostAdd(0, 1);
 	//$xml=$obone->ClusterHostRemove(0);
-
 	
-
+	// module file exist load it!
+	
+	if ((file_exists("module/".$ocreq[0]."/".$ocreq[0].".php")) AND ($ocreq[0]!="")) {
+		include "module/".$ocreq[0]."/".$ocreq[0].".php";
+	} 
+	
 ?>
 
 
 
 <?
+
 	include "template/".$template."/footer.php"; 
 
 ?>

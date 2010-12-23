@@ -6,9 +6,9 @@ require_once('include/adodb5/adodb-active-record.inc.php');
 $dbhost="localhost";
 $dbname="oneconsole";
 $dbusername="root";
-$dbpassword="passwd";
+$dbpassword="monalisa";
 
-$url="http://localhost/";
+$url="http://localhost";
 
 $language="en";
 $template="default";
