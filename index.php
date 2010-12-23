@@ -45,14 +45,10 @@
 	//$xml=$obone->ClusterHostRemove(0);
 	
 	
-	var_dump($xml);
+	echo $_REQUEST["q"];
 
 ?>
-<button id="opener">Open Dialog</button>
 
-<div id="dialog-modal" title="Basic dialog">
-	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-</div>
 
 
 <?
