@@ -11,7 +11,7 @@
 	$ocreq=split("/",$_REQUEST['q']);
 
 	// check exist session
-	if (($_SESSION['SID']=="") AND ($ocreq[0]!="signin") AND ($ocreq[0]!="signup")) {
+	if (($_SESSION['SID']=="") AND ($ocreq[0]!="lostpassword") AND ($ocreq[0]!="signin") AND ($ocreq[0]!="signup")) {
 		header("Location: ".$url."/signin");
 	}
 	

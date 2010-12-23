@@ -19,7 +19,7 @@
 <tr>
 	<td></td>
 	<td>
-		<a href="forgotpassowrd">forgot password ?</a> <a href="signup">don't have an account ?</a>
+		<a href="lostpassword">forgot password ?</a> <a href="signup">don't have an account ?</a>
 	</td>
 </tr>
 <tr>
