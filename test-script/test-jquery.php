@@ -7,19 +7,13 @@
 <link type="text/css" href="include/jquery/css/ui-darkness/jquery-ui-1.8.7.custom.css" rel="Stylesheet" />	
 <script type="text/javascript" src="include/jquery/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="include/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
+<script type="text/javascript" src="include/jquery-validate/jquery.validate.js"></script>
 <script>
-	$(function() {
-		$( "#dialog-modal" ).dialog({
-			autoOpen: false,
-			modal: true
-		});
-		$( "#opener" ).click(function() {
-			$( "#dialog-modal" ).dialog( "open" );
-			return false;
-		});
-	});
+
 </script>
-
-
 </head>
 <body>
+
+
+</body>
+</html>
