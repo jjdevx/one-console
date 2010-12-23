@@ -1,11 +1,16 @@
 <?php
 
 	require 'config.php';
-	include "template/".$template."/header.php";	
-
 	$obone=new One();
 	$obone->service_url=$xmlrpc;
 	$obone->session=$oneadmin.":".sha1($onepassword);
+
+	// check exist session
+	if (($_SESSION['SID']=="") AND ($_REQUEST['q']!="login") AND ($_REQUEST['q']!="signup")) {
+		header("Location: http://localhost/login");
+	}
+	
+	include "template/".$template."/header.php";
 	
 	/** test user **/	
 	//$xml=$obone->UserPool();
@@ -43,9 +48,8 @@
 	//$xml=$obone->ClusterDelete(1);
 	//$xml=$obone->ClusterHostAdd(0, 1);
 	//$xml=$obone->ClusterHostRemove(0);
+
 	
-	
-	echo $_REQUEST["q"];
 
 ?>
 

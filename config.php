@@ -6,7 +6,9 @@ require_once('include/adodb5/adodb-active-record.inc.php');
 $dbhost="localhost";
 $dbname="oneconsole";
 $dbusername="root";
-$dbpassword="monalisa";
+$dbpassword="passwd";
+
+$url="http://localhost/";
 
 $language="en";
 $template="default";
@@ -14,7 +16,7 @@ $template="default";
 $oneadmin="oneadmin";
 $onepassword="oneadmin";
 
-$xmlrpc="http://172.16.20.183:2633/RPC2";
+$xmlrpc="http://localhost:2633/RPC2";
 
 $db = &ADONewConnection('mysql'); 
 $db->PConnect($dbhost,$dbusername,$dbpassword,$dbname);
