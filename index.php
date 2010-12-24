@@ -1,9 +1,12 @@
 <?php
 
 	require 'config.php';
-	$obone=new One();
-	$obone->service_url=$xmlrpc;
-	$obone->session=$oneadmin.":".sha1($onepassword);
+	$obone=new One($xmlrpc, $oneadmin.":".sha1($onepassword));
+	
+	/*
+	 * $obone->service_url=$xmlrpc;
+	 * $obone->session=$oneadmin.":".sha1($onepassword);
+	 */	
 
 	$_SESSION['SID']="";
 	
