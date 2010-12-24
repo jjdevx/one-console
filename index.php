@@ -16,10 +16,25 @@
 	// check exist session
 	if (($_SESSION['SID']=="") AND ($ocreq[0]!="lostpassword") AND ($ocreq[0]!="signin") AND ($ocreq[0]!="signup")) {
 		header("Location: ".$url."/signin");
+	} 
+	
+	// check module file exist load it!
+	
+	if ((file_exists("module/".$ocreq[0]."/".$ocreq[0].".php")) AND ($ocreq[0]!="")) {
+		$modload=TRUE;
+	} else {
+		header("Location: ".$url."/dashboard");
 	}
+	
+	// load header theme
 	
 	include "template/".$template."/header.php";
 	
+	// load module
+	if ($modload==TRUE) {
+		include "module/".$ocreq[0]."/".$ocreq[0].".php";
+	} 
+		
 	/** test user **/	
 	//$xml=$obone->UserPool();
 	//$xml=$obone->UserAuthen("oneadmin", "oneadmin");
@@ -57,11 +72,7 @@
 	//$xml=$obone->ClusterHostAdd(0, 1);
 	//$xml=$obone->ClusterHostRemove(0);
 	
-	// module file exist load it!
 	
-	if ((file_exists("module/".$ocreq[0]."/".$ocreq[0].".php")) AND ($ocreq[0]!="")) {
-		include "module/".$ocreq[0]."/".$ocreq[0].".php";
-	} 
 	
 ?>
 

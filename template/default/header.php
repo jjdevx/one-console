@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>OpenNebula Web Management Console</title>
+<title>ONE Management Console</title>
 <link rel="stylesheet" type="text/css" href="template/default/style.css" />
 <link rel="Stylesheet" type="text/css" href="include/jquery/css/ui-darkness/jquery-ui-1.8.7.custom.css"/>	
 <!-- 
