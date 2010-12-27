@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sign In</title>
+<link rel="stylesheet" type="text/css" href="../template/default/style.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 
@@ -25,12 +26,12 @@ $().ready(function() {
 		},
 		messages: {
 			username: {
-				required: " Please provide a username",
-				minlength: " Your password must be at least 5 characters long"
+				required: " <br>Please provide a username",
+				minlength: " <br>Your username must be at least 5 characters"
 			},
 			password: {
-				required: " Please provide a password",
-				minlength: " Your password must be at least 5 characters long"
+				required: " <br>Please provide a password",
+				minlength: " <br>Your password must be at least 5 characters"
 			}
 		}
 	});
@@ -40,19 +41,35 @@ $().ready(function() {
 
 </head>
 <body>
+<div class="login-container">
+<h1><a>One Console</a></h1>
 <form name="login" id="login" method="post" action="login.php">
-<p>
-<label for="username">Username</label>
-<input type="text" name="username">
-</p>
-<p>
-<label for="password">Password</label>
-<input type="text" name="password">
-</p>
-<p>
-<a href="forgotpassowrd.php">forgot password ?</a> <a href="signup.php">don't have an account ?</a>
-</p>
-<input type="submit" value="Login">
+<table class="round">
+<tr>
+	<td colspan="2">
+		<p><label for="username">Username</label></p>
+		<p><input type="text" name="username" size="20" class="login-input"></p>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<p><label for="password">Password</label></p>
+		<p><input type="text" name="password" size="20" class="login-input"></p>
+	</td>
+</tr>
+<tr>
+	<td>
+		<p class="login">
+			<a href="forgotpassowrd.php">forgot password ?</a><br>
+			<a href="signup.php">don't have an account ?</a>
+		</p>
+	</td>
+	<td align="right">
+		<input type="submit" value="SignIn" class="submit">
+	</td>
+</tr>
+</table>
 </form>
+</div>
 </body>
 </html>
