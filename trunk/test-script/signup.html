@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sign Up</title>
+<link rel="stylesheet" type="text/css" href="../template/default/style.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 
@@ -13,6 +14,19 @@ $().ready(function() {
 	// validate signup form on keyup and submit
 	$("#signup").validate({
 		rules: {
+			name: {
+				required: true,
+				minlength: 5
+			},
+			email: {
+				required: true,
+				email: true,
+				minlength: 5
+			},
+			username: {
+				required: true,
+				minlength: 2
+			},			
 			password: {
 				required: true,
 				minlength: 5
@@ -24,14 +38,22 @@ $().ready(function() {
 			}
 		},
 		messages: {
+			email: {
+				required: " <br>Please enter a valid email address",
+				minlength: " <br>Your e-mail must be at least 5 characters long"				
+			},			
+			username: {
+				required: " <br>Please provide a username",
+				minlength: " <br>Your username must be at least 5 characters long"
+			},
 			password: {
-				required: " Please provide a password",
-				minlength: " Your password must be at least 5 characters long"
+				required: " <br>Please provide a password",
+				minlength: " <br>Your password must be at least 5 characters long"
 			},
 			confirm_password: {
-				required: " Please provide a password",
-				minlength: " Your password must be at least 5 characters long",
-				equalTo: " Please enter the same password as above"
+				required: " <br>Please provide a confirm password",
+				minlength: " <br>Your password must be at least 5 characters long",
+				equalTo: " <br>Please enter the same password as above"
 			}
 		}
 	});
@@ -43,40 +65,36 @@ $().ready(function() {
 
 </head>
 <body>
-
+<div class="login-container">
+<h1 id="signup-logo"><a>One Console</a></h1>
 <form id="signup" name="signup" method="post" name="signup.php">
-<!-- <label>Name</label>
-<input type="text" name="name">
-<label>Address 1</label>
-<input type="text" name="address1">
-<label>Address 2</label>
-<input type="text" name="address2" >
-<label>City</label>
-<input type="text" name="city">
-<label>State</label>
-<input type="text" name="state">
-<label>Conutry</label>
-<input type="text" name="country">
-<label>Zip Code</label>
-<input type="text" name="zip">
-<label>Phone</label>
-<input type="text" name="phone">
-<label>E-Mail</label>
-<input type="text" name="email">
--->
-
-<p>
-	<label for="password">Password</label>
-	<input id="password" name="password" type="password" />
-</p>
-
-<p>
-	<label for="confirm_password">Confirm password</label>
-	<input id="confirm_password" name="confirm_password" type="password" />
-</p>
-
-<input type="submit" value="SignUp"><input type="reset" value="Reset">
+<table class="round">
+<tr>
+	<td><label for="name">Name</label></td>
+	<td><input id="name" name="name" type="text" class="login-input"/></td>
+</tr>
+<tr>
+	<td><label for="email">E-Mail</label></td>
+	<td><input id="email" name="email" type="text" class="login-input" size="15"/></td>
+</tr>
+<tr>
+	<td><label for="username">Username</label></td>
+	<td><input id="username" name="username" type="text" class="login-input" size="10"/></td>
+</tr>
+<tr>
+	<td><label for="password">Password</label></td>
+	<td><input id="password" name="password" type="password" class="login-input" size="10"/></td>
+</tr>
+<tr>
+	<td><label for="confirm_password">Confirm password</label></td>
+	<td><input id="confirm_password" name="confirm_password" type="password" class="login-input" size="10"/></td>
+</tr>
+<tr>
+	<td></td>
+	<td><input type="submit" value="SignUp" class="submit"></td>
+</tr>
+</table>
 </form>
-
+</div>
 </body>
 </html>
