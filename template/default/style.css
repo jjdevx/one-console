@@ -32,6 +32,7 @@ input.submit {
     line-height: 13px;
     padding: 6px 12px;
     text-decoration: none;
+    color: #555555;
 }
 	
 
@@ -47,15 +48,30 @@ table.round {
     border: 1px solid #E5E5E5;
     font-weight: normal;
     margin-left: 8px;
-    padding: 16px 16px 40px;
+    padding: 16px 16px 20px;    
 }
 
-h1 a {
+table.round td {
+	padding:10px; 
+}
+
+
+h1#login-logo a {
     background: url("images/logo-big.png") no-repeat scroll center top transparent;
     display: block;
     height: 64px;
     overflow: hidden;
     padding-bottom: 10px;
     text-indent: -9999px;
-    width: 390px;
+    width: 400px;
+}
+
+h1#signup-logo a {
+    background: url("images/logo-big.png") no-repeat scroll center top transparent;
+    display: block;
+    height: 64px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    text-indent: -9999px;
+    width: 500px;
 }
