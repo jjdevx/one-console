@@ -2,6 +2,8 @@ body {
   font: 12pt Verdana, Helvetica, sans-serif;
   color: #7d7d7d;
   background-color: #ececec;
+  margin: 0px;
+  
 }
 
 .login-container {
@@ -41,6 +43,10 @@ p.login a {
 	font-size: 11px;
 }
 
+div#dashboard-menu a {
+	color: #0088aa;
+}
+
 table.round {	
 	-moz-border-radius: 11px 11px 11px 11px;
     -moz-box-shadow: 0 4px 18px #C8C8C8;
@@ -75,3 +81,90 @@ h1#signup-logo a {
     text-indent: -9999px;
     width: 500px;
 }
+
+h1#signup-logo a {
+    background: url("images/logo-big.png") no-repeat scroll center top transparent;
+    display: block;
+    height: 64px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    text-indent: -9999px;
+    width: 500px;
+}
+
+h1.dashboard-text {
+    background: url("images/logo-big.png")  no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 64px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    text-indent: -9999px;
+    width: 500px;
+}
+
+div#dashboard-header {
+	background: url("images/logo-mid.png")  no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 64px;
+    overflow: hidden;
+    padding-bottom: 5px;
+    text-indent: -9999px;
+    width: 500px;
+    margin-left: 10px;
+}
+
+div#dashboard-menu {
+	text-align: right;
+	font-size: 12px;	
+	margin-right: 10px;
+    margin-top: 5px;
+}    
+
+div#header {
+	background: #f9f9f9;
+	margin: 0;
+}
+
+#nav-menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#nav-menu li {
+	float: left;
+}
+
+#nav-menu li a {
+	background: #cccccc bottom left repeat-x;
+	height: 2em;
+	line-height: 2em;
+	float: left;
+	width: 7em;
+	display: block;
+	color: #4d4d4d;
+	text-decoration: none;
+	text-align: center;
+}
+
+#nav-menu li a:hover {
+	background: #aaaaaa bottom left repeat-x;
+	color: #000000;
+}
+
+div#nav-menu ul li.selected a {
+	color: #000000;
+	font-weight:bold;
+}
+
+
+/* Hide from IE5-Mac \*/
+#nav-menu li a {
+	float: none
+}
+/* End hide */
+
+div#nav-menu {
+	background: #cccccc;
+	height: 2em;
+} 
