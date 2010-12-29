@@ -44,7 +44,6 @@
 	//$xml=$obone->UserAuthen("helen", "xxx");
 	
 	/** test VM **/
-	
 	//$xml=$obone->VmPool(0,TRUE,-1);
 	//$xml=$obone->VmInfo(112);
 	//$xml==$obone->VmAction("stop",112);
@@ -72,11 +71,7 @@
 	//$xml=$obone->ClusterHostAdd(0, 1);
 	//$xml=$obone->ClusterHostRemove(0);
 	
-	
-	
 ?>
-
-
 
 <?
 
