@@ -21,6 +21,8 @@ $xmlrpc="http://localhost:2633/RPC2";
 $db = &ADONewConnection('mysql'); 
 $db->PConnect($dbhost,$dbusername,$dbpassword,$dbname);
 
+//$db->debug=1;
+
 if (!$db) die("Connection failed");   
 
 ADOdb_Active_Record::SetDatabaseAdapter($db);
@@ -30,11 +32,11 @@ require 'include/oneconsole/class.user_privileges.php';
 require 'include/oneconsole/class.template.php';
 require 'include/oneconsole/class.privileges.php';
 require 'include/oneconsole/class.one.php';
+require 'include/oneconsole/class.onehelper.php';
 
 require "language/".$language.".php";
 
 session_start();
-
 
 
 ?>
