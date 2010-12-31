@@ -1,32 +1,45 @@
-<form name="login" id="login" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-<table>
+<?php 
+ 
+ if (($_POST["signin"]=="1") AND ($_POST["username"]!="") AND ($_POST["password"]!="") AND ($obone->UserAuthen($_POST["username"], $_POST["password"])==true)) {
+ 	
+ 	$_SESSION["SID"]=$_POST["username"].":".$_POST["password"];
+ 	header("Location: dashboard"); 	
+ 	
+ } else {
+  
+ }
+ 
+
+?>
+<div class="login-container">
+<h1 id="login-logo"><a>One Console</a></h1>
+<form name="login" id="login" method="post">
+<table class="round">
 <tr>
-	<td>
-		<label for="username">Username</label>
+	<td colspan="2">
+		<label for="username">Username</label><br>
+		<input type="text" name="username" size="20" class="login-input">
 	</td>
-	<td>
-		<input type="text" name="username">
+</tr>
+<tr>
+	<td colspan="2">
+		<label for="password">Password</label><br>
+		<input type="password" name="password" size="20" class="login-input">
 	</td>
 </tr>
 <tr>
 	<td>
-		<label for="password">Password</label>
+		<p class="login">
+			<a href="forgotpassowrd.php">forgot password ?</a><br>
+			<a href="signup.php">don't have an account ?</a>
+			
+		</p>
 	</td>
-	<td>
-		<input type="password" name="password">
-	</td>
-</tr>
-<tr>
-	<td></td>
-	<td>
-		<a href="lostpassword">forgot password ?</a> <a href="signup">don't have an account ?</a>
-	</td>
-</tr>
-<tr>
-	<td></td>
-	<td>
-		<input id="submit" type="submit" value="Login">
+	<td align="right">
+		<input type="hidden" value="1" name="signin">
+		<input type="submit" value="SignIn" class="submit">
 	</td>
 </tr>
 </table>
 </form>
+</div>

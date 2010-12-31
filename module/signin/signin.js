@@ -5,7 +5,7 @@ $().ready(function() {
 		rules: {
 			username: {
 				required: true,
-				minlength: 5
+				minlength: 5				
 			},
 			password: {
 				required: true,
@@ -14,14 +14,16 @@ $().ready(function() {
 		},
 		messages: {
 			username: {
-				required: " Please provide a username",
-				minlength: " Your username must be at least 5 characters long"
+				required: " <br>Please provide a username",
+				minlength: " <br>Your username must be at least 5 characters"
 			},
 			password: {
-				required: " Please provide a password",
-				minlength: " Your password must be at least 5 characters long"
+				required: " <br>Please provide a password",
+				minlength: " <br>Your password must be at least 5 characters"
 			}
 		}
 	});
 		
 });
+
+

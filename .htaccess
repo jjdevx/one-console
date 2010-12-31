@@ -6,6 +6,7 @@ Options +FollowSymLinks
 
 # Customized error messages.
 ErrorDocument 404 /
+ErrorDocument 403 /
 
 <IfModule mod_php5.c>
   php_value magic_quotes_gpc                0

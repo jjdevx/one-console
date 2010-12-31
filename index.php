@@ -1,14 +1,10 @@
 <?php
 
 	require 'config.php';
-	$obone=new One($xmlrpc, $oneadmin.":".sha1($onepassword));
-	
-	/*
-	 * $obone->service_url=$xmlrpc;
-	 * $obone->session=$oneadmin.":".sha1($onepassword);
-	 */	
-
-	$_SESSION['SID']="";
+	$obone=new One();
+ 	$obone->service_url=$xmlrpc;
+ 	$obone->session=$oneadmin.":".sha1($onepassword);
+ 
 	
 	// split query string
 	$ocreq=split("/",$_REQUEST['q']);
@@ -34,6 +30,8 @@
 	if ($modload==TRUE) {
 		include "module/".$ocreq[0]."/".$ocreq[0].".php";
 	} 
+	
+	
 		
 	/** test user **/	
 	//$xml=$obone->UserPool();
@@ -70,6 +68,8 @@
 	//$xml=$obone->ClusterDelete(1);
 	//$xml=$obone->ClusterHostAdd(0, 1);
 	//$xml=$obone->ClusterHostRemove(0);
+	
+	//var_dump($xml);
 	
 ?>
 
