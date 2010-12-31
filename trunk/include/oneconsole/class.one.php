@@ -5,11 +5,6 @@ class One {
 	var $service_url="http://localhost:2633/RPC2";
 	var $session="";
 	
-	function __construct($url,$ses) {
-		$this->service_url=$ses;
-		$this->session=$ses;
-	}
-	
 	/**
 	 * send xml data to OpenNebula RPC server
 	 * @param $method
