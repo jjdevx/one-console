@@ -17,6 +17,11 @@ label.error {
 	color: #ff0000;
 }
 
+label.info {
+	font-size: 10pt;
+	color: #000000;
+}
+
 input.login-input {
 	font-size: 18pt;
 	border: 1px solid #cccccc;

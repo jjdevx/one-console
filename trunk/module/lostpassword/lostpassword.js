@@ -1,17 +1,19 @@
 $().ready(function() {
 	
 	// validate signup form on keyup and submit
-	$("#lostpassword").validate({
+	$("#lostpass").validate({
 		rules: {
-			username: {
+			email: {
 				required: true,
-				minlength: 5
+				email: true,
+				minlength: 3
+				
 			}
 		},
 		messages: {
-			username: {
-				required: " Please provide a username",
-				minlength: " Your username must be at least 5 characters long"
+			email: {
+				required: " <br>Please provide a valid e-mail",
+				minlength: " <br>Your username must be at least 3 characters long"
 			}
 		}
 	});
