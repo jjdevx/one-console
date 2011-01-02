@@ -30,8 +30,8 @@
 <tr>
 	<td>
 		<p class="login">
-			<a href="forgotpassowrd.php">forgot password ?</a><br>
-			<a href="signup.php">don't have an account ?</a>
+			<a href="<?=$url; ?>/lostpassword">forgot password ?</a><br>
+			<a href="<?=$url; ?>/signup">don't have an account ?</a>
 			
 		</p>
 	</td>

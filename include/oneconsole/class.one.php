@@ -341,12 +341,15 @@ class One {
 		$result=$this->rpc_send("one.user.allocate", array($this->session,$username,sha1($passwd)));
 		if ($result[0]==true) {
 			if ((count($result) > 1) AND ($result[1]>0)) {
-				$result=true;
+				$result=$result[1];
 			} else {
 				$result=false;
 			}
+		} else {
+			$result=false;
 		}
 		return $result;
+		
 	}
 	
 	/**
@@ -356,7 +359,7 @@ class One {
 	 * @param string $password
 	 */	
 	function UserPasswd($uid,$passwd) {
-		$result=$this->rpc_send("one.user.passwd", array($this->session,$uid,sha1($passwd)));	
+		$result=$this->rpc_send("one.user.passwd", array($this->session,(int)$uid,sha1($passwd)));	
 		if ($result[0]==true) {
 			if (count($result) > 1) {
 				$result=false;
