@@ -132,7 +132,7 @@ function isShowAllVM($username){
 function isShowAllNetwork($username){
 	
 	ADODB_Active_Record::ClassHasMany('Users', 'user_privileges','user');
-		
+	
 	$obone_user=New Users();
 	$obone_user->Load("user='".$username."'");	
 	
@@ -143,6 +143,37 @@ function isShowAllNetwork($username){
 	}
 	
 	return $result;		
+}
+
+function userAuthenDB($username,$password){
+	$obone_user=new Users();
+	$obone_user->Load("user='".$username."' AND password='".sha1($password)."'");
+	if ($obone_user->enable==true) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+function sendMassMail($subject,$body,$cname,$emailto) {
+	global $smtp_host,$smtp_port,$admin_name,$admin_email;
+	include_once("include/phpmailer/class.phpmailer.php");
+	
+	$mail = new phpmailer();
+	$mail->CharSet="utf-8";
+	$mail->IsHTML(true);
+	$mail->Host= $smtp_host;
+	$mail->Port= $smtp_port;
+	$mail->Mailer="smtp";
+	$mail->From=$admin_email;
+	$mail->FromName=$admin_name;
+	$mail->Subject=$subject;
+	$mail->Body="<html><body>".stripcslashes($body)."</body></html>";
+	$mail->AddAddress($emailto,$cname);
+	$result=$mail->Send();
+	// Clear all addresses and attachments for next loop
+	$mail->ClearAddresses();
+	return $result;
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php 
  
- if ((isset($_POST["signin"])) AND ($_POST["username"]!="") AND ($_POST["password"]!="") AND ($obone->UserAuthen($_POST["username"], $_POST["password"])==true)) {
+ if ((isset($_POST["signin"])) AND ($_POST["username"]!="") AND ($_POST["password"]!="") AND ($obone->UserAuthen($_POST["username"], $_POST["password"])==true) AND (userAuthenDB($_POST["username"],$_POST["password"])==true)) {
  	
  	$_SESSION["SID"]=$_POST["username"].":".$_POST["password"];
  	header("Location: dashboard"); 	
