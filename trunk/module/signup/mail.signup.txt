@@ -1,0 +1,8 @@
+Hi, %NAME%
+
+You have register to ONE Console , to complete register please activate your account by click the url below :
+%URL%/activate?email=%EMAIL%
+
+* If your e-mail client cannot click the URL above. please copy and paste to your browser.
+
+Support Team

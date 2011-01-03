@@ -13,8 +13,9 @@ if ((isset($_POST['submit'])) AND ($_POST["name"]!="") AND ($_POST["email"]!="")
 		$obone_user->name=$_POST["name"];
 		$obone_user->email=$_POST["email"];
 		$obone_user->sshkey=" ";
-		$obone_user->enable=true;		
+		$obone_user->enable=false;		
 		$obone_user->Save();
+		
 		// add user privileges
 		$pvalue=array(0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0);
 		$index=1;
@@ -26,6 +27,16 @@ if ((isset($_POST['submit'])) AND ($_POST["name"]!="") AND ($_POST["email"]!="")
 			$obone_userpriv->Save();	
 			$index++;
 		}
+		
+		// send mail
+		$body=file_get_contents("module/signup/mail.signup.txt");
+		$body=ereg_replace("%NAME%",$_POST["name"],$body);
+		$body=ereg_replace("%EMAIL%",$_POST["email"],$body);
+		$body=ereg_replace("%URL%",$url,$body);
+		$body=nl2br($body);
+		
+		sendMassMail("ONE Console registration confirm",$body,$_POST["name"],$_POST["email"]);
+		
 		// success message
 		$msgerror="Register account complete!, please check your e-mail to activate account.";		
 	} else {

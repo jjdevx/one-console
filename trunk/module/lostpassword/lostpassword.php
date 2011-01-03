@@ -5,7 +5,7 @@ if ((isset($_POST["submit"])) AND ($_POST["email"]!="")) {
 	$result=getUserInfoByEmail($_POST["email"]);
 	
 	if (($result->oneid)!="") {
-		// if usr exist then reset password and inform via e-mail
+		// if usr exist then reset password and inform via e-mail		
 		// gen salt and reset password in database then reset password in Cloud Infra
 		$salt=substr(sha1(time()),0,10);
 		$obone->UserPasswd($result->oneid, $salt);
@@ -13,7 +13,17 @@ if ((isset($_POST["submit"])) AND ($_POST["email"]!="")) {
 		$obone_user->Load("oneid=".$result->oneid);
 		$obone_user->password=sha1($salt);
 		$obone_user->Save();
+		
+		// send mail
+		$body=file_get_contents("module/lostpassword/mail.lostpassword.txt");
+		$body=ereg_replace("%NAME%",$result->name,$body);
+		$body=ereg_replace("%SALT%",$salt,$body);
+		$body=nl2br($body);
+		
+		sendMassMail("ONE Console reset password",$body,$result->name,$result->email);
+		
 		$msgerror="Your new password was sent to your e-mail address!";
+		
 	} else {
 		$msgerror="Your e-mail address is not exist!";
 	}

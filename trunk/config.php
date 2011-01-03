@@ -13,6 +13,9 @@ $url="http://localhost";
 $language="en";
 $template="default";
 
+$smtp_host="localhost";
+$smtp_port="25";
+
 $oneadmin="oneadmin";
 $onepassword="oneadmin";
 
