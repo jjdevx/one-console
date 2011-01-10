@@ -130,6 +130,26 @@ div#header {
 	margin: 0;
 }
 
+table#dashboard-body  {
+	-moz-border-radius: 5px 5px 5px 5px;    
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E5E5E5;
+    font-weight: normal;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
+    padding: 5px 5px 5px;
+    width:99%;
+	
+}
+
+table#dashboard-body tbody tr th {
+	background: #FFF;
+	font-weight: normal;
+	font-size: 10pt;
+
+}
+
 #nav-menu ul {
 	list-style: none;
 	padding: 0;
