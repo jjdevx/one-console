@@ -3,6 +3,7 @@
     * [CloudComputing Cloud Computing]
     * [OpenNebula OpenNebula Project]
     * [ManagementConsole Web Management Console]
+  * [Screenshot]
   * [Requirement]
   * [Installation]
   * [Reference]
