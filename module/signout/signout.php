@@ -1,7 +1,6 @@
 <?php
 
-$_SESSION["SID"]="";
-session_destroy();
+$_SESSION["AVID"]="";
 
 header("Location: /signin");
 
